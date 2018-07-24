@@ -1,5 +1,5 @@
 # fb-messenger-parser
-Parse and search through Facebook messenger messages.
+Parse and search through Facebook messenger messages. Made for Python3.
 
 ## Description
 
