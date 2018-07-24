@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "sender_name": "James Smith",
+      "timestamp_ms": 1429351626069,
+      "content": "Hi dude!",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "James Smith",
+      "timestamp_ms": 1429351621836,
+      "content": "How are you doing?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "John Doe",
+      "timestamp_ms": 1429351600203,
+      "content": "I am fine! How are you?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "James Smith",
+      "timestamp_ms": 1429351513710,
+      "content": "I'm great, got a new job at Microsoft",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "James Smith",
+      "timestamp_ms": 1429348853423,
+      "content": "Gotta go, let's hang out some time",
+      "type": "Generic"
+    }
+  ],
+  "title": "John Doe",
+  "is_still_participant": true,
+  "thread_type": "Regular",
+  "participants": [
+    "John Doe"
+  ],
+  "thread_path": "johndoe_54ec378e45"
+}
