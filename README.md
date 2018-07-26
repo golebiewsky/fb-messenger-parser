@@ -5,7 +5,7 @@ Parse and search through Facebook messenger messages. Made for Python3.
 
 This is a simple script for parsing and searching through Facebook messenger messages, exported directly from Facebook as json files. Instructions on how to export messages in the [link](https://www.facebook.com/help/1701730696756992?helpref=hc_global_nav).
 
-Script at the moment has the basic ability to parse message files in directories (as downloaded from Facebook and uncompressed) and provides basic case-sensitive search.
+Script at the moment has the basic ability to parse message files in directories (as downloaded from Facebook and uncompressed) and provides basic search.
 
 Work in progress.
 
@@ -16,6 +16,7 @@ Execute the script and follow on screen instructions
     $ python fb-messenger-parser.py
     Set the base directory for facebook messenger messages (exported as json): example
     Search text: How
+    Should search be case sensitive? (y/n): n
     ---------------------------
     Message content: "How are you doing?"
     Sender name: James Smith
