@@ -20,6 +20,8 @@ def main():
             matches = search_directories(search_text, base_dir, 0)
         elif if_case_sensitive == 'n':
             matches = search_directories(search_text, base_dir, 2)
+        else:
+            if_case_sensitive = None
 
     for m in matches:
         print('---------------------------')
