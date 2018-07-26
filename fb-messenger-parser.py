@@ -9,9 +9,11 @@ MessageResult = collections.namedtuple('MessageResult',
 
 
 def main():
+    if_case_sensitive = None
+    matches = None
+
     base_dir = get_base_dir(input("Set the base directory for facebook messenger messages (exported as json): "))
     search_text = input("Search text: ")
-    if_case_sensitive = None
     while not if_case_sensitive:
         if_case_sensitive = input("Should search be case sensitive? (y/n): ")
         if if_case_sensitive == 'y':
@@ -65,7 +67,7 @@ def search_messages(search, file, case_sensitive):
                 # flag=0 -> case sensitive, flag=2 -> case insensitive
                 if re.search(search, content, flags=case_sensitive):
                     message = MessageResult(sender_name=sender_name, timestamp_ms=timestamp_ms, content=content,
-                                           title=title)
+                                            title=title)
                     yield message
 
 
