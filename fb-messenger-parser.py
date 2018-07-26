@@ -2,6 +2,7 @@ import os
 import collections
 import json
 import datetime
+import re
 
 MessageResult = collections.namedtuple('MessageResult',
                                        'sender_name, timestamp_ms, content, title')
@@ -10,8 +11,14 @@ MessageResult = collections.namedtuple('MessageResult',
 def main():
     base_dir = get_base_dir(input("Set the base directory for facebook messenger messages (exported as json): "))
     search_text = input("Search text: ")
+    if_case_sensitive = None
+    while not if_case_sensitive:
+        if_case_sensitive = input("Should search be case sensitive? (y/n): ")
+        if if_case_sensitive == 'y':
+            matches = search_directories(search_text, base_dir, 0)
+        elif if_case_sensitive == 'n':
+            matches = search_directories(search_text, base_dir, 2)
 
-    matches = search_directories(search_text, base_dir)
     for m in matches:
         print('---------------------------')
         print('Message content: "{}"'.format(m.content))
@@ -29,17 +36,17 @@ def get_base_dir(directory):
     return os.path.abspath(directory)
 
 
-def search_directories(search, directory):
+def search_directories(search, directory, case_sensitive=2):
     items = os.listdir(directory)
     for item in items:
         full_item = os.path.join(directory, item)
         if os.path.isdir(full_item):
-            yield from search_directories(search, full_item)
+            yield from search_directories(search, full_item, case_sensitive)
         elif item == 'message.json':
-            yield from search_messages(search, full_item)
+            yield from search_messages(search, full_item, case_sensitive)
 
 
-def search_messages(search, file):
+def search_messages(search, file, case_sensitive):
     with open(file, 'r', encoding='utf-8') as fin:
         messages_data = json.load(fin)
         messages = messages_data.get('messages')
@@ -55,9 +62,10 @@ def search_messages(search, file):
             if content and sender_name:
                 content = content.encode('iso-8859-1').decode('utf-8')
                 sender_name = sender_name.encode('iso-8859-1').decode('utf-8')
-                if content.find(search) >= 0:
+                # flag=0 -> case sensitive, flag=2 -> case insensitive
+                if re.search(search, content, flags=case_sensitive):
                     message = MessageResult(sender_name=sender_name, timestamp_ms=timestamp_ms, content=content,
-                                            title=title)
+                                           title=title)
                     yield message
 
 
